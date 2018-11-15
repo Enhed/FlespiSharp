@@ -38,15 +38,9 @@ namespace FlespiSharp.Http{
             return new StringContent(json, Encoding.UTF8, "application/json");
         }
 
-        private string CreateUri(string parameters = null){
-
-            var uri = string.IsNullOrWhiteSpace(parameters) ? builder.ToString()
+        private string CreateUri(string parameters = null)
+            => string.IsNullOrWhiteSpace(parameters) ? builder.ToString()
                 : $"{builder.ToString()}?{WebUtility.UrlEncode(parameters)}";
-
-            Console.WriteLine($"Create Uri: {uri}");
-
-            return uri;
-        }
 
         private async Task<RestResult<T>> GetRestResult<T>(Func<HttpClient, Task<HttpResponseMessage>> getter){
             using(var response = (await getter(client)).EnsureSuccessStatusCode())
