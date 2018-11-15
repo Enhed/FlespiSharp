@@ -1,12 +1,30 @@
 # FlespiSharp
 
-var connection = new Connection("your token");
-var deviceService = new DeviceService(connection);
+## Get info about all devices
 
-var all = await deviceService.Get(); // get all devices
-Console.WriteLine(JsonConvert.SerializeObject(all));
+```c#
 
-var galileo = await deviceService.Get("name=*galileo*"); // get devices with contains galileo
-Console.WriteLine(JsonConvert.SerializeObject(galileo));
+    class Program
+    {
+        static async Task Main(string[] args)
+        {
 
-connection.Dispose();
+            var con = new Connection("your token");
+            
+            var result = await con.CreateGateway().Devices.All.Get();
+
+            foreach(var device in result.Values){
+                Console.WriteLine($"[{device.Id}] device name {device.Name} with ident {device.Ident} have typeId {device.TypeId}");
+            }
+
+            if(result.HasErrors){
+                Console.WriteLine("Has Errors in response:");
+
+                foreach(var error in result.Errors){
+                    Console.WriteLine($"\t[{error.Code}]: id {error.Id} = {error.Reason}");
+                }
+            }
+        }
+    }
+
+```
