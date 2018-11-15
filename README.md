@@ -11,7 +11,6 @@ class Program
 {
     static async Task Main(string[] args)
     {
-
         using(var con = new Connection("your token")){
             var result = await con.CreateGateway().Devices.All.Get();
 
