@@ -4,7 +4,7 @@ using FlespiSharp.Http;
 
 namespace FlespiSharp.Gateway
 {
-    public sealed class DevicesService : RestProvider
+    public class DevicesService : RestProvider
     {
         public DevicesService(HttpClient client, PathBuilder builder)
             : base(client, builder)
@@ -17,6 +17,10 @@ namespace FlespiSharp.Gateway
 
         public Task<RestResult<int>> Delete(string parameters = null){
             return Delete<int>(parameters);
+        }
+
+        public Task<RestResult<Device>> Update(Device device, string parameters = null){
+            return Put<Device, Device>(device, parameters);
         }
     }
 }
