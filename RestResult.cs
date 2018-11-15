@@ -7,6 +7,9 @@ namespace FlespiSharp{
 
         [JsonProperty("errors", NullValueHandling = NullValueHandling.Ignore)]
         public RestError[] Errors;
+
+        [JsonIgnore]
+        public bool HasErrors => Errors?.Length > 0;
     }
 
     public sealed class RestError
