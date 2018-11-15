@@ -6,7 +6,7 @@ using FlespiSharp.Http;
 
 namespace FlespiSharp.Gateway
 {
-    public sealed class DevicesProvider : RestProvider
+    public class DevicesProvider : RestProvider
     {
         public DevicesProvider(HttpClient client, PathBuilder builder)
             : base(client, builder.AppendPath("devices"))

@@ -3,7 +3,7 @@ using FlespiSharp.Http;
 
 namespace FlespiSharp.Gateway
 {
-    public sealed class GatewayProvider : PathProvider
+    public class GatewayProvider : PathProvider
     {
         public GatewayProvider(HttpClient client)
             : base(client, PathBuilder.Create("gw"))
