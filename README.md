@@ -3,6 +3,10 @@
 ## Get info about all devices
 
 ```c#
+using System;
+using FlespiSharp;
+using FlespiSharp.Gateway;
+
 class Program
 {
     static async Task Main(string[] args)
