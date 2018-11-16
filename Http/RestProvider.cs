@@ -40,7 +40,7 @@ namespace FlespiSharp.Http{
 
         private string CreateUri(string parameters = null)
             => string.IsNullOrWhiteSpace(parameters) ? builder.ToString()
-                : $"{builder.ToString()}?{WebUtility.UrlEncode(parameters)}";
+                : $"{builder.ToString()}?{Uri.EscapeUriString(parameters)}";
 
         private async Task<RestResult<T>> GetRestResult<T>(Func<HttpClient, Task<HttpResponseMessage>> getter){
             using(var response = (await getter(client)).EnsureSuccessStatusCode())
